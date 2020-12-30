@@ -7,6 +7,7 @@ const AnimatedG = Animated.createAnimatedComponent(G);
 const AnimatedPath = Animated.createAnimatedComponent(Path);
 
 const screen = Dimensions.get("screen")
+const center = screen.width / 2;
 
 type BottomTabProps = {
 }
@@ -39,13 +40,13 @@ const getFakeGoo = (blobRadius: number, extrusion: number) => {
 }
 
 const BottomTab: React.FC<BottomTabProps> = () => {
-  const x = React.useRef(new Animated.Value(minX)).current;
   const extrusion = React.useRef(new Animated.Value(1)).current;
-  const iconPos = [80, 200, 320];
-  const iconY = React.useRef([new Animated.Value(0), new Animated.Value(0), new Animated.Value(0)]).current;
+  const iconPos = [center - 120, center, center + 120];
+  const x = React.useRef(new Animated.Value(iconPos[0])).current;
+  const iconY = React.useRef([new Animated.Value(-20), new Animated.Value(0), new Animated.Value(0)]).current;
 
   const toggleNth = (n: number) => {
-    const duration = 500;
+    const duration = 300;
     const locationX = iconPos[n];
     Animated.parallel([
       ...iconY.filter((_, i) => i !== n).map((y) => Animated.timing(y, {
@@ -77,7 +78,7 @@ const BottomTab: React.FC<BottomTabProps> = () => {
   }
 
   return (
-    <View style={{backgroundColor: "darkblue", height: "100%", justifyContent: "flex-end"}}>
+    <View style={{backgroundColor: "black", height: "100%", justifyContent: "flex-end"}}>
       <Svg width={screen.width} height={height + radius} viewBox={`0 -${radius} ${screen.width} ${height + radius}`}>
         <Rect fill="white" width={screen.width} height={height} />
         <AnimatedG
