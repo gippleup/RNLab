@@ -1,3 +1,3 @@
 # RNLab
 
-![alt Bottom Tab version 0.1](https://imgur.com/a/vvU14Hb)
+![alt Bottom Tab version 0.1](https://i.imgur.com/qbQxbrj.gif)
